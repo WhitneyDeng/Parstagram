@@ -2,6 +2,7 @@ package com.example.parstagram;
 
 import android.app.Application;
 
+import com.example.parstagram.model.Post;
 import com.parse.Parse;
 import com.parse.ParseObject;
 
@@ -24,6 +25,10 @@ public class ParseApplication extends Application
 //        HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
 //        httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
 //        builder.networkInterceptors().add(httpLoggingInterceptor);
+
+        // register parse model to be able to query & set data in this model
+        ParseObject.registerSubclass(Post.class);
+
 
         // set applicationId, and server server based on the values in the back4app settings.
         // any network interceptors must be added with the Configuration Builder given this syntax

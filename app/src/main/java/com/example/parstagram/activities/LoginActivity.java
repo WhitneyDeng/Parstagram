@@ -82,7 +82,7 @@ public class LoginActivity extends AppCompatActivity
         Intent i = new Intent(this, MainActivity.class);
         startActivity(i);
 
-        // remove LoginA ctivity from back stack
+        // remove LoginActivity from back stack
         // user should be unable to return to login screen through back button
         finish();
     }

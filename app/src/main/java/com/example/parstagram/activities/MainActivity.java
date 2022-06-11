@@ -7,18 +7,33 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.example.parstagram.R;
 import com.parse.ParseUser;
 
 public class MainActivity extends AppCompatActivity
 {
+    public static final String TAG = "MainActivity";
+
+    private EditText etDescription;
+    private Button btnCaptureImage;
+    private ImageView ivPostImage;
+    private Button btnSubmit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        etDescription = findViewById(R.id.etDescription);
+        btnCaptureImage = findViewById(R.id.btnCaptureImage);
+        ivPostImage = findViewById(R.id.ivPostImage);
+        btnSubmit = findViewById(R.id.btnSubmit);
+
     }
 
     // Menu icons are inflated just as they were with actionbar
@@ -49,6 +64,6 @@ public class MainActivity extends AppCompatActivity
     private void logout()
     {
         ParseUser.logOut();
-//        ParseUser currentUser = ParseUser.getCurrentUser();
+//        ParseUser currentUser = ParseUser.getCurrentUser();   //todo: update the current user by calling the ParseUser's getCurrentUser() how does this change anything?
     }
 }
