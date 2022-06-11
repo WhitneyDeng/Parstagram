@@ -67,11 +67,11 @@ public class LoginActivity extends AppCompatActivity
                 {
                     Log.e(TAG, "Issue with login", e);
 
-                    Toast.makeText(LoginActivity.this, "Issue with Login: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "Issue with Login: " + e.getMessage(), Toast.LENGTH_SHORT).show(); //todo: change to Snackbar
                     return;
                 }
                 goMainActivity();
-                Toast.makeText(LoginActivity.this, "Login Success", Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginActivity.this, "Login Success", Toast.LENGTH_SHORT).show(); //todo: change to Snackbar
             }
         });
     }

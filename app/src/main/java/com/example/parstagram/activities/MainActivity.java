@@ -3,14 +3,17 @@ package com.example.parstagram.activities;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.parstagram.R;
 import com.example.parstagram.model.Post;
@@ -41,7 +44,22 @@ public class MainActivity extends AppCompatActivity
         ivPostImage = findViewById(R.id.ivPostImage);
         btnSubmit = findViewById(R.id.btnSubmit);
 
-        queryPosts();
+//        queryPosts();
+        // when submit clicked, take information populated in view & push to database
+        btnSubmit.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                String description = etDescription.getText().toString();
+                if (description.isEmpty())
+                {
+                    Toast.makeText(MainActivity.this, "error: description cannot be empty", Toast.LENGTH_SHORT).show(); //todo: change to Snackbar
+                    return;
+                }
+
+            }
+        });
     }
 
     // Menu icons are inflated just as they were with actionbar
@@ -72,7 +90,15 @@ public class MainActivity extends AppCompatActivity
     private void logout()
     {
         ParseUser.logOut();
+        goLoginActivity();
 //        ParseUser currentUser = ParseUser.getCurrentUser();   //todo: update the current user by calling the ParseUser's getCurrentUser() how does this change anything?
+    }
+
+    private void goLoginActivity()
+    {
+        Intent i = new Intent(this, LoginActivity.class);
+        startActivity(i);
+        finish();
     }
 
     private void queryPosts()
