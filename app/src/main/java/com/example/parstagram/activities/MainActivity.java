@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -12,7 +13,13 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.example.parstagram.R;
+import com.example.parstagram.model.Post;
+import com.parse.FindCallback;
+import com.parse.ParseException;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity
 {
@@ -34,6 +41,7 @@ public class MainActivity extends AppCompatActivity
         ivPostImage = findViewById(R.id.ivPostImage);
         btnSubmit = findViewById(R.id.btnSubmit);
 
+        queryPosts();
     }
 
     // Menu icons are inflated just as they were with actionbar
@@ -65,5 +73,32 @@ public class MainActivity extends AppCompatActivity
     {
         ParseUser.logOut();
 //        ParseUser currentUser = ParseUser.getCurrentUser();   //todo: update the current user by calling the ParseUser's getCurrentUser() how does this change anything?
+    }
+
+    private void queryPosts()
+    {
+        // specify which class to query
+        ParseQuery<Post> query = ParseQuery.getQuery(Post.class);
+        // specify query params
+        query.include(Post.KEY_USER);
+        // perform query
+        query.findInBackground(new FindCallback<Post>()
+        {
+            @Override
+            public void done(List<Post> posts, ParseException e)
+            {
+                // check for & handle error
+                if (e != null)
+                {
+                    Log.e(TAG, "Issue with post query", e);
+                    return ;
+                }
+
+                for (Post post : posts)
+                {
+                    Log.i(TAG, "Post: " + post.getDescription() + ", username: " + post.getUser().getUsername());
+                }
+            }
+        });
     }
 }

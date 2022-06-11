@@ -1,18 +1,27 @@
 package com.example.parstagram;
 
 import android.app.Application;
+import android.util.Log;
 
 import com.example.parstagram.model.Post;
+import com.parse.FindCallback;
 import com.parse.Parse;
+import com.parse.ParseException;
 import com.parse.ParseObject;
+import com.parse.ParseQuery;
+
+import java.util.List;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 
 public class ParseApplication extends Application
 {
+    public static final String TAG = "ParseApplication";
+
     @Override
-    public void onCreate() {
+    public void onCreate()
+    {
         super.onCreate();
 
 //        // Use for troubleshooting -- remove this line for production
@@ -28,7 +37,6 @@ public class ParseApplication extends Application
 
         // register parse model to be able to query & set data in this model
         ParseObject.registerSubclass(Post.class);
-
 
         // set applicationId, and server server based on the values in the back4app settings.
         // any network interceptors must be added with the Configuration Builder given this syntax
