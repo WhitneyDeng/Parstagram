@@ -62,7 +62,6 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-//        queryPosts();
         // when submit clicked, take information populated in view & push to database
         btnSubmit.setOnClickListener(new View.OnClickListener()
         {
@@ -91,7 +90,7 @@ public class MainActivity extends AppCompatActivity
         // wrap File object (representing camera) into a content provider
         // required for API >= 24
         // See https://guides.codepath.com/android/Sharing-Content-with-Intents#sharing-files-with-api-24-or-higher
-        Uri fileProvider = FileProvider.getUriForFile(MainActivity.this, "com.codepath.fileprovider", photoFile);
+        Uri fileProvider = FileProvider.getUriForFile(MainActivity.this, "com.codepath.fileprovider", photoFile); // note: make sure authority match android:authorities="com.codepath.fileprovider" in AndroidManifest
         intent.putExtra(MediaStore.EXTRA_OUTPUT, fileProvider);
 
         // If you call startActivityForResult() using an intent that no app can handle, your app will crash.
