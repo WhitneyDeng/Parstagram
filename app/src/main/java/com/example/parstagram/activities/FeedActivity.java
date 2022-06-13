@@ -9,7 +9,7 @@ import com.example.parstagram.R;
 
 public class FeedActivity extends AppCompatActivity
 {
-    RecyclerView rvFeed;
+    RecyclerView rvPosts;
 
 
     @Override
@@ -17,5 +17,7 @@ public class FeedActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_feed);
+
+        rvPosts = findViewById(R.id.rvPosts);
     }
 }
