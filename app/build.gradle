@@ -38,7 +38,8 @@ dependencies {
 
     //FOR: jitpack
     implementation 'com.github.parse-community.Parse-SDK-Android:parse:3.0.1'
-    implementation 'com.squareup.okhttp3:logging-interceptor:3.8.1' // for logging API calls to LogCat
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.8.1'
+    // for logging API calls to LogCat
 
     //FOR: toolbar
     implementation 'androidx.appcompat:appcompat:1.3.1'

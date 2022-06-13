@@ -1,12 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--    FROM: https://guides.codepath.com/android/Sharing-Content-with-Intents#sharing-files-with-api-24-or-higher-->
-    <paths>
-        <!-- See table below.  The external-files-path DOES NOT require external storage permissions. -->
-<!--    application opened from Parstagram has access to Parstagram's external files, particularly in Pictures => allow sharing bn Parstagram & other apps -->
-        <external-files-path
-            name="images"
-            path="Pictures" />
+<?xml version="1.0" encoding="utf-8"?><!--    FROM: https://guides.codepath.com/android/Sharing-Content-with-Intents#sharing-files-with-api-24-or-higher-->
+<paths>
+    <!-- See table below.  The external-files-path DOES NOT require external storage permissions. -->
+    <!--    application opened from Parstagram has access to Parstagram's external files, particularly in Pictures => allow sharing bn Parstagram & other apps -->
+    <external-files-path
+        name="images"
+        path="Pictures" />
 
-        <!--Uncomment below to share the entire application specific directory -->
-        <!--<external-path name="all_dirs" path="."/>-->
-    </paths>
+    <!--Uncomment below to share the entire application specific directory -->
+    <!--<external-path name="all_dirs" path="."/>-->
+</paths>

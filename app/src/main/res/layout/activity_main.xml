@@ -8,7 +8,7 @@
     tools:context=".activities.CreatePostActivity"
     android:layout_margin="16dp"
     android:gravity="center_horizontal">
-<!--    centre elements in linear layout: https://www.tutorialkart.com/kotlin-android/kotlin-android-linearlayout-center-align/-->
+    <!--    centre elements in linear layout: https://www.tutorialkart.com/kotlin-android/kotlin-android-linearlayout-center-align/-->
 
     <EditText
         android:id="@+id/etDescription"
