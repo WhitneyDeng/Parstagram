@@ -49,4 +49,9 @@ public class Post extends ParseObject
     {
         put(KEY_USER, parseUser);
     }
+
+    public Date getCreatedAt()
+    {
+        return getDate(KEY_CREATED_AT);
+    }
 }
