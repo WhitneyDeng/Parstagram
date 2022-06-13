@@ -49,9 +49,6 @@
                 android:resource="@xml/fileprovider" />
         </provider>
 
-
-
-
         <meta-data
             android:name="com.parse.SERVER_URL"
             android:value="@string/back4app_server_url" />

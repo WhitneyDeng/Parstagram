@@ -226,31 +226,4 @@ public class CreatePostActivity extends AppCompatActivity
         startActivity(i);
         finish();
     }
-
-    private void queryPosts()
-    {
-        // specify which class to query
-        ParseQuery<Post> query = ParseQuery.getQuery(Post.class);
-        // specify query params
-        query.include(Post.KEY_USER);
-        // perform query
-        query.findInBackground(new FindCallback<Post>()
-        {
-            @Override
-            public void done(List<Post> posts, ParseException e)
-            {
-                // check for & handle error
-                if (e != null)
-                {
-                    Log.e(TAG, "Issue with post query", e);
-                    return ;
-                }
-
-                for (Post post : posts)
-                {
-                    Log.i(TAG, "Post: " + post.getDescription() + ", username: " + post.getUser().getUsername());
-                }
-            }
-        });
-    }
 }
