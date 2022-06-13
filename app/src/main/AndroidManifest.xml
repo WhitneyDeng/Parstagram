@@ -23,8 +23,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Parstagram"
         tools:targetApi="31">
+
         <activity
-            android:name=".FeedActivity"
+            android:name=".activities.LoginActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activities.CreatePostActivity"></activity>
+        <activity
+            android:name=".activities.FeedActivity"
             android:exported="false" />
         <!-- make sure within the application tag, otherwise app will crash with XmlResourceParser errors -->
         <!-- FOR FileProvider | FROM: https://guides.codepath.com/android/Sharing-Content-with-Intents#sharing-files-with-api-24-or-higher -->
@@ -38,16 +49,8 @@
                 android:resource="@xml/fileprovider" />
         </provider>
 
-        <activity
-            android:name=".activities.LoginActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".activities.CreatePostActivity"></activity>
+
 
         <meta-data
             android:name="com.parse.SERVER_URL"

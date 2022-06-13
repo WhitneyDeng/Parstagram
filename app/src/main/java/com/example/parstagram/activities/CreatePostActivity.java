@@ -200,9 +200,17 @@ public class CreatePostActivity extends AppCompatActivity
         {
             case R.id.miLogout:
                 logout();
+            case R.id.miFeed:
+                goFeedActivity();
             default:
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void goFeedActivity()
+    {
+        Intent i = new Intent(this, FeedActivity.class);
+        startActivity(i);
     }
 
     private void logout()
