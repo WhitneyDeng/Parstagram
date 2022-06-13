@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".activities.MainActivity"
+    tools:context=".activities.CreatePostActivity"
     android:layout_margin="16dp"
     android:gravity="center_horizontal">
 <!--    centre elements in linear layout: https://www.tutorialkart.com/kotlin-android/kotlin-android-linearlayout-center-align/-->

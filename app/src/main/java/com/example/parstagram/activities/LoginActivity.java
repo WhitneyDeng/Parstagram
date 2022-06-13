@@ -1,7 +1,6 @@
 package com.example.parstagram.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,7 +11,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.parstagram.R;
-import com.google.android.material.snackbar.Snackbar;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseUser;
@@ -79,7 +77,7 @@ public class LoginActivity extends AppCompatActivity
     // navigate to MainActivity
     private void goMainActivity()
     {
-        Intent i = new Intent(this, MainActivity.class);
+        Intent i = new Intent(this, CreatePostActivity.class);
         startActivity(i);
 
         // remove LoginActivity from back stack

@@ -2,7 +2,6 @@ package com.example.parstagram.activities;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.FileProvider;
 
 import android.content.Intent;
@@ -14,7 +13,6 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -34,7 +32,7 @@ import com.parse.SaveCallback;
 import java.io.File;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity
+public class CreatePostActivity extends AppCompatActivity
 {
     public static final String TAG = "MainActivity";
     public final static int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 1034; // note: can be any arbitrary number
@@ -75,12 +73,12 @@ public class MainActivity extends AppCompatActivity
                 String description = etDescription.getText().toString();
                 if (description.isEmpty())
                 {
-                    Toast.makeText(MainActivity.this, "error: description cannot be empty", Toast.LENGTH_SHORT).show(); //todo: change to Snackbar
+                    Toast.makeText(CreatePostActivity.this, "error: description cannot be empty", Toast.LENGTH_SHORT).show(); //todo: change to Snackbar
                     return;
                 }
                 if (photoFile == null || ivPostImage.getDrawable() == null)
                 {
-                    Toast.makeText(MainActivity.this, "error: image cannot be empty", Toast.LENGTH_SHORT).show(); //todo: change to Snackbar
+                    Toast.makeText(CreatePostActivity.this, "error: image cannot be empty", Toast.LENGTH_SHORT).show(); //todo: change to Snackbar
                     return;
                 }
                 ParseUser currentUser = ParseUser.getCurrentUser();
@@ -99,7 +97,7 @@ public class MainActivity extends AppCompatActivity
         // wrap File object (representing camera) into a content provider
         // required for API >= 24
         // See https://guides.codepath.com/android/Sharing-Content-with-Intents#sharing-files-with-api-24-or-higher
-        Uri fileProvider = FileProvider.getUriForFile(MainActivity.this, "com.codepath.fileprovider", photoFile); // note: make sure authority match android:authorities="com.codepath.fileprovider" in AndroidManifest
+        Uri fileProvider = FileProvider.getUriForFile(CreatePostActivity.this, "com.codepath.fileprovider", photoFile); // note: make sure authority match android:authorities="com.codepath.fileprovider" in AndroidManifest
         intent.putExtra(MediaStore.EXTRA_OUTPUT, fileProvider);
 
         // If you call startActivityForResult() using an intent that no app can handle, your app will crash.
@@ -170,7 +168,7 @@ public class MainActivity extends AppCompatActivity
                 if (e != null)
                 {
                     Log.e(TAG, "error while saving post", e);
-                    Toast.makeText(MainActivity.this, "error while saving post", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CreatePostActivity.this, "error while saving post", Toast.LENGTH_SHORT).show();
                     return; //note: not in tutorial (remove this line to clear interface even on failure to save post)
                 }
                 Log.i(TAG, "post saved successfully");
