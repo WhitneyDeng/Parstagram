@@ -114,8 +114,8 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder>
                 Post post = posts.get(position);
                 // create intent for the new activity
                 Intent intent = new Intent(context, PostDetailsActivity.class);
-                /* serialize the movie using parceler, use its short name as a key
-                 * imow: wrap up Movie object to be delivered to the MovieDetailsActivity
+                /* serialize the post using parceler, use its short name as a key
+                 * imow: wrap up Post object to be delivered to the PostDetailsActivity
                  * .class.getSimpleName(): https://www.geeksforgeeks.org/class-getsimplename-method-in-java-with-examples/*/
                 intent.putExtra(Post.class.getSimpleName(), Parcels.wrap(post));
                 // show the activity

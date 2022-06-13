@@ -5,11 +5,14 @@ import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
 
+import java.util.Date;
+
 /* representation of an entry in Post database class
  * gets and sets from and to the database */
 @ParseClassName("Post") // for Parse
 public class Post extends ParseObject
 {
+    //qq: so does Parse automatically get these fields?
     // keys match column names in Post database class
     public static final String KEY_DESCRIPTION = "description";
     public static final String KEY_IMAGE = "image";
