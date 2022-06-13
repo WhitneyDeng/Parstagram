@@ -2,6 +2,7 @@ package com.example.parstagram.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,12 +18,12 @@ import com.example.parstagram.activities.PostDetailsActivity;
 import com.example.parstagram.model.Post;
 import com.parse.ParseFile;
 
-import org.parceler.Parcels;
-
 import java.util.List;
 
 public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder>
 {
+    public static final String TAG = "PostsAdapter";
+
     private Context context;
     private List<Post> posts;
 
@@ -81,6 +82,8 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder>
             tvUsername = itemView.findViewById(R.id.tvUsername);
             ivImage = itemView.findViewById(R.id.ivImage);
             tvDescription = itemView.findViewById(R.id.tvDescription);
+
+            itemView.setOnClickListener(this);
         }
 
         public void bind(Post post)
@@ -108,16 +111,18 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder>
         {
             // gets item position
             int position = getAdapterPosition();
+
+            Log.i(TAG, String.format("Row %d clicked", position));
+
             // make sure the position is valid, i.e. actually exists in the view
             if (position != RecyclerView.NO_POSITION) {
                 // get the post at the position, this won't work if the class is static
                 Post post = posts.get(position);
                 // create intent for the new activity
                 Intent intent = new Intent(context, PostDetailsActivity.class);
-                /* serialize the post using parceler, use its short name as a key
-                 * imow: wrap up Post object to be delivered to the PostDetailsActivity
-                 * .class.getSimpleName(): https://www.geeksforgeeks.org/class-getsimplename-method-in-java-with-examples/*/
-                intent.putExtra(Post.class.getSimpleName(), Parcels.wrap(post));
+
+                // qq: since only need
+                intent.putExtra(Post.class.getSimpleName(), post);
                 // show the activity
                 context.startActivity(intent);
             }

@@ -12,10 +12,9 @@ import com.example.parstagram.R;
 import com.example.parstagram.model.Post;
 import com.parse.ParseFile;
 
-import org.parceler.Parcels;
-
 public class PostDetailsActivity extends AppCompatActivity
 {
+    public static final String TAG = "PostDetailsActivity";
     private Post post;
 
     private TextView tvUsername;
@@ -35,8 +34,8 @@ public class PostDetailsActivity extends AppCompatActivity
         tvDescription = findViewById(R.id.tvDescription);
 
         // unwrap the movie passed in via intent, using its simple name as a key
-        post = (Post) Parcels.unwrap(getIntent().getParcelableExtra(Post.class.getSimpleName()));
-        Log.d("MovieDetailsActivity", String.format("Showing details for '%s'", post.getDescription()));
+        post = (Post) getIntent().getParcelableExtra(Post.class.getSimpleName());
+        Log.d(TAG, String.format("Showing details for '%s'", post.getDescription()));
 
         // set the title and overview
         tvUsername.setText(post.getUser().getUsername());

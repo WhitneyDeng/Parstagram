@@ -24,7 +24,7 @@
         android:theme="@style/Theme.Parstagram"
         tools:targetApi="31">
         <activity
-            android:name=".PostDetailsActivity"
+            android:name=".activities.PostDetailsActivity"
             android:exported="false" />
         <activity
             android:name=".activities.LoginActivity"
@@ -38,7 +38,8 @@
         <activity android:name=".activities.CreatePostActivity" />
         <activity
             android:name=".activities.FeedActivity"
-            android:exported="false" /> <!-- make sure within the application tag, otherwise app will crash with XmlResourceParser errors -->
+            android:exported="false" />
+        <!-- make sure within the application tag, otherwise app will crash with XmlResourceParser errors -->
         <!-- FOR FileProvider | FROM: https://guides.codepath.com/android/Sharing-Content-with-Intents#sharing-files-with-api-24-or-higher -->
         <provider
             android:name="androidx.core.content.FileProvider"
