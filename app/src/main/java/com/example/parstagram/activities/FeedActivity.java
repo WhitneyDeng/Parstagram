@@ -3,6 +3,7 @@ package com.example.parstagram.activities;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -23,11 +24,11 @@ public class FeedActivity extends AppCompatActivity
     public static final int INITIAL_POST_LOAD_SIZE = 20;
 
     private RecyclerView rvPosts;
+    private SwipeRefreshLayout swipeContainer;
 
     protected LinearLayoutManager layoutManager;
     protected PostsAdapter adapter;
-    protected List<Post> allPosts;
-
+//    protected List<Post> allPosts;    //todo: can be deleted
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -38,8 +39,8 @@ public class FeedActivity extends AppCompatActivity
         rvPosts = findViewById(R.id.rvPosts);
 
         // initialize the array that will hold posts and create a PostsAdapter
-        allPosts = new ArrayList<>();
-        adapter = new PostsAdapter(this, allPosts);
+//        allPosts = new ArrayList<>(); //todo: can be deleted
+        adapter = new PostsAdapter(this, new ArrayList<>());
 
         // recycler view setup: layout manager & the adapter
         layoutManager = new LinearLayoutManager(this);
@@ -47,6 +48,25 @@ public class FeedActivity extends AppCompatActivity
         rvPosts.setAdapter(adapter); //set adapter for rv
 
         queryPosts();
+
+        // SETUP: pull to refresh
+        swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
+        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener()
+        {
+            @Override
+            public void onRefresh()
+            {
+                adapter.clear();
+                queryPosts();
+                swipeContainer.setRefreshing(false);    // signal refresh has finished (hide refresh indicator on UI)
+            }
+        });
+
+        // Configure the refreshing colors
+        swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
     }
 
     private void queryPosts()
@@ -79,7 +99,7 @@ public class FeedActivity extends AppCompatActivity
 //                }
 
                 // save posts to list & notify adapter of new data (to show on screen)
-                allPosts.addAll(posts);
+                adapter.addAll(posts);
                 adapter.notifyDataSetChanged();
             }
         });
