@@ -17,6 +17,8 @@ import com.example.parstagram.activities.PostDetailsActivity;
 import com.example.parstagram.model.Post;
 import com.parse.ParseFile;
 
+import org.parceler.Parcels;
+
 import java.util.List;
 
 public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder>
