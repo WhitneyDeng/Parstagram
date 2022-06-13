@@ -26,6 +26,7 @@ import com.example.parstagram.R;
 import com.example.parstagram.model.Post;
 import com.parse.FindCallback;
 import com.parse.ParseException;
+import com.parse.ParseFile;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
@@ -77,8 +78,13 @@ public class MainActivity extends AppCompatActivity
                     Toast.makeText(MainActivity.this, "error: description cannot be empty", Toast.LENGTH_SHORT).show(); //todo: change to Snackbar
                     return;
                 }
+                if (photoFile == null || ivPostImage.getDrawable() == null)
+                {
+                    Toast.makeText(MainActivity.this, "error: image cannot be empty", Toast.LENGTH_SHORT).show(); //todo: change to Snackbar
+                    return;
+                }
                 ParseUser currentUser = ParseUser.getCurrentUser();
-                savePost(description, currentUser);
+                savePost(description, currentUser, photoFile);
             }
         });
     }
@@ -136,7 +142,7 @@ public class MainActivity extends AppCompatActivity
                 // by this point we have the camera photo on disk
                 // get bitmap of photo taken
                 Bitmap takenImage = BitmapFactory.decodeFile(photoFile.getAbsolutePath());
-                // RESIZE BITMAP, see section below
+                // RESIZE BITMAP, see section below: Bitmap is large and might exceed memory available to Parstagram. If encounter problem, resize bitmap: https://guides.codepath.org/android/Accessing-the-Camera-and-Stored-Media#resizing-the-picture
                 // Load the taken image into a preview
                 ivPostImage.setImageBitmap(takenImage);
             } else { // Result was a failure
@@ -146,11 +152,12 @@ public class MainActivity extends AppCompatActivity
     }
 
     // create new post object and push to database
-    private void savePost(String description, ParseUser currentUser)
+    private void savePost(String description, ParseUser currentUser, File photoFile)
     {
         // create & populate new Post model object
         Post post = new Post();
         post.setDescription(description);
+        post.setImage(new ParseFile(photoFile));
         post.setUser(currentUser);
 
         // push Post object to database
@@ -170,6 +177,7 @@ public class MainActivity extends AppCompatActivity
 
                 // reset UI (visual indication of post success)
                 etDescription.setText(""); // clear description line
+                ivPostImage.setImageResource(0); // clear image view
             }
         });
     }
