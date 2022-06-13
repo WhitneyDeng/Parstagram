@@ -14,6 +14,7 @@ import com.example.parstagram.R;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseUser;
+import com.parse.SignUpCallback;
 
 public class LoginActivity extends AppCompatActivity
 {
@@ -21,6 +22,7 @@ public class LoginActivity extends AppCompatActivity
     private EditText etUsername;
     private EditText etPassword;
     private Button btnLogin;
+    private Button btnSignup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -38,6 +40,9 @@ public class LoginActivity extends AppCompatActivity
         etUsername = findViewById(R.id.etUsername);
         etPassword = findViewById(R.id.etPassword);
         btnLogin = findViewById(R.id.btnLogin);
+        btnSignup = findViewById(R.id.btnSignup);
+
+        // set up login & signup listeners
         btnLogin.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -47,6 +52,45 @@ public class LoginActivity extends AppCompatActivity
                 String username = etUsername.getText().toString();
                 String password = etPassword.getText().toString();
                 loginUser(username, password);
+            }
+        });
+
+        btnSignup.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Log.i(TAG, "onClick sign up button");
+                String username = etUsername.getText().toString();
+                String password = etPassword.getText().toString();
+                signupUser(username, password);
+            }
+        });
+    }
+
+    // src: https://guides.codepath.org/android/Building-Data-driven-Apps-with-Parse#user-signup
+    private void signupUser(String username, String password)
+    {
+        Log.i(TAG, "Attempting to signup user" + username);
+        ParseUser user = new ParseUser();
+
+        user.setUsername(username);
+        user.setPassword(password);
+
+        user.signUpInBackground(new SignUpCallback()
+        {
+            @Override
+            public void done(ParseException e)
+            {
+                if (e != null)
+                {
+                    Log.e(TAG, "Issue with signup", e);
+
+                    Toast.makeText(LoginActivity.this, "Issue with Signup: " + e.getMessage(), Toast.LENGTH_SHORT).show(); //todo: change to Snackbar
+                    return;
+                }
+                goMainActivity();
+                Toast.makeText(LoginActivity.this, "Signup Success", Toast.LENGTH_SHORT).show(); //todo: change to Snackbar
             }
         });
     }

@@ -2,6 +2,7 @@ package com.example.parstagram.activities;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.FileProvider;
 
 import android.content.Intent;
@@ -223,7 +224,8 @@ public class CreatePostActivity extends AppCompatActivity
     private void goLoginActivity()
     {
         Intent i = new Intent(this, LoginActivity.class);
+//        i.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY); // close all non-login activities
         startActivity(i);
-        finish();
+        finishAffinity();
     }
 }
