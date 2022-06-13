@@ -91,6 +91,11 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder>
                         .load(image.getUrl())
                         .into(ivImage);
             }
+            else
+            {
+                // empty ImageView if post has no image
+                ivImage.setImageResource(0);
+            }
         }
     }
 }
