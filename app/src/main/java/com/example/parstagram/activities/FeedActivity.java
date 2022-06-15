@@ -33,6 +33,8 @@ public class FeedActivity extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_feed);
 
+    getSupportActionBar().setLogo(R.drawable.nav_logo_whiteout);
+
     rvPosts = findViewById(R.id.rvPosts);
 
     // initialize the array that will hold posts and create a PostsAdapter
