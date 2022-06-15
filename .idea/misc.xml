@@ -3,13 +3,19 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/bottom_nav_create_post.xml" value="0.1805" />
+        <entry key="app/src/main/res/drawable/bottom_nav_home_background.xml" value="0.1815" />
+        <entry key="app/src/main/res/drawable/bottom_nav_profile_selector.xml" value="0.1805" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.152" />
         <entry key="app/src/main/res/layout/activity_feed.xml" value="0.16822916666666668" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.19402974446614585" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.22442474365234383" />
         <entry key="app/src/main/res/layout/activity_post_details.xml" value="0.27521514892578125" />
         <entry key="app/src/main/res/layout/item_post.xml" value="0.1671875" />
+        <entry key="app/src/main/res/menu/bottom_nav_home_selector.xml" value="0.171875" />
+        <entry key="app/src/main/res/menu/menu_bottom_navigation.xml" value="0.4794342041015625" />
         <entry key="app/src/main/res/menu/menu_main.xml" value="0.16296296296296298" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/bottom_nav_home.xml" value="0.1815" />
         <entry key="app/src/main/res/xml/fileprovider.xml" value="0.15364583333333334" />
       </map>
     </option>

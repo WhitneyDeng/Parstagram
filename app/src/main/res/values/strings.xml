@@ -5,5 +5,8 @@
     <!-- Paste BOTH strings as required -->
     <string name="back4app_app_id">6RnGHwzgtrpaxaT57tN9dRxkdjRAaDFk9ogeWMTF</string>
     <string name="back4app_client_key">3F9AMC61CeZqrxstWQxrbNreSLPur6guAvrWt20h</string>
+    <string name="bottom_nav_home">home</string>
+    <string name="bottom_nav_new_post">new post</string>
+    <string name="bottom_nav_profile">profile</string>
 
 </resources>
