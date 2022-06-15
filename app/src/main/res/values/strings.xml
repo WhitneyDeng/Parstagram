@@ -8,5 +8,7 @@
     <string name="bottom_nav_home">home</string>
     <string name="bottom_nav_new_post">new post</string>
     <string name="bottom_nav_profile">profile</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

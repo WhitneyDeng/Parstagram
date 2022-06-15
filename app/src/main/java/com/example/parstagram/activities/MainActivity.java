@@ -1,8 +1,10 @@
 package com.example.parstagram.activities;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
+import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -22,6 +24,8 @@ import android.widget.Toast;
 
 import com.example.parstagram.R;
 import com.example.parstagram.model.Post;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseUser;
@@ -29,8 +33,9 @@ import com.parse.SaveCallback;
 
 import java.io.File;
 
-public class ComposeActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity {
   public static final String TAG = "MainActivity";
+
   public final static int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 1034; // note: can be any arbitrary number
   public String photoFileName = "photo.jpg";
   File photoFile;
@@ -39,16 +44,26 @@ public class ComposeActivity extends AppCompatActivity {
   private Button btnCaptureImage;
   private ImageView ivPostImage;
   private Button btnSubmit;
+  private BottomNavigationView bottomNavigationView;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_main);
+    setContentView(R.layout.activity_compose);
 
     etDescription = findViewById(R.id.etDescription);
     btnCaptureImage = findViewById(R.id.btnCaptureImage);
     ivPostImage = findViewById(R.id.ivPostImage);
     btnSubmit = findViewById(R.id.btnSubmit);
+    bottomNavigationView = findViewById(R.id.bottomNavigation);
+
+//    final FragmentManager fragmentManager = getSupportFragmentManager();
+//
+//    // define your fragments here
+//    final Fragment fragment1 = new FirstFragment();
+//    final Fragment fragment2 = new SecondFragment();
+//    final Fragment fragment3 = new ThirdFragment();
+
 
     btnCaptureImage.setOnClickListener(new View.OnClickListener() {
       @Override
@@ -63,15 +78,39 @@ public class ComposeActivity extends AppCompatActivity {
       public void onClick(View v) {
         String description = etDescription.getText().toString();
         if (description.isEmpty()) {
-          Toast.makeText(ComposeActivity.this, "error: description cannot be empty", Toast.LENGTH_SHORT).show(); //todo: change to Snackbar
+          Toast.makeText(MainActivity.this, "error: description cannot be empty", Toast.LENGTH_SHORT).show(); //todo: change to Snackbar
           return;
         }
         if (photoFile == null || ivPostImage.getDrawable() == null) {
-          Toast.makeText(ComposeActivity.this, "error: image cannot be empty", Toast.LENGTH_SHORT).show(); //todo: change to Snackbar
+          Toast.makeText(MainActivity.this, "error: image cannot be empty", Toast.LENGTH_SHORT).show(); //todo: change to Snackbar
           return;
         }
         ParseUser currentUser = ParseUser.getCurrentUser();
         savePost(description, currentUser, photoFile);
+      }
+    });
+
+    bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+      @Override
+      public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        Fragment fragment;
+        switch (item.getItemId()) {
+          case R.id.action_home:
+//            fragment = fragment1;
+            Toast.makeText(MainActivity.this, "home selected", Toast.LENGTH_SHORT).show();
+            break;
+          case R.id.action_compose:
+//            fragment = fragment2;
+            Toast.makeText(MainActivity.this, "compose selected", Toast.LENGTH_SHORT).show();
+            break;
+          case R.id.action_profile:
+          default:
+//            fragment = fragment3;
+            Toast.makeText(MainActivity.this, "profile selected", Toast.LENGTH_SHORT).show();
+            break;
+        }
+//        fragmentManager.beginTransaction().replace(R.id.rlContainer, fragment).commit();
+        return true;
       }
     });
   }
@@ -85,7 +124,7 @@ public class ComposeActivity extends AppCompatActivity {
     // wrap File object (representing camera) into a content provider
     // required for API >= 24
     // See https://guides.codepath.com/android/Sharing-Content-with-Intents#sharing-files-with-api-24-or-higher
-    Uri fileProvider = FileProvider.getUriForFile(ComposeActivity.this, "com.codepath.fileprovider", photoFile); // note: make sure authority match android:authorities="com.codepath.fileprovider" in AndroidManifest
+    Uri fileProvider = FileProvider.getUriForFile(MainActivity.this, "com.codepath.fileprovider", photoFile); // note: make sure authority match android:authorities="com.codepath.fileprovider" in AndroidManifest
     intent.putExtra(MediaStore.EXTRA_OUTPUT, fileProvider);
 
     // If you call startActivityForResult() using an intent that no app can handle, your app will crash.
@@ -150,7 +189,7 @@ public class ComposeActivity extends AppCompatActivity {
         // error with pushing to databse
         if (e != null) {
           Log.e(TAG, "error while saving post", e);
-          Toast.makeText(ComposeActivity.this, "error while saving post", Toast.LENGTH_SHORT).show();
+          Toast.makeText(MainActivity.this, "error while saving post", Toast.LENGTH_SHORT).show();
           return; //note: not in tutorial (remove this line to clear interface even on failure to save post)
         }
         Log.i(TAG, "post saved successfully");
@@ -186,7 +225,7 @@ public class ComposeActivity extends AppCompatActivity {
         goFeedActivity();
         break;
       default:
-        Toast.makeText(ComposeActivity.this, "error: menu itme not recognised", Toast.LENGTH_SHORT).show();
+        Toast.makeText(MainActivity.this, "error: menu itme not recognised", Toast.LENGTH_SHORT).show();
     }
     return super.onOptionsItemSelected(item);
   }

@@ -110,7 +110,7 @@ public class LoginActivity extends AppCompatActivity {
 
   // navigate to MainActivity
   private void goMainActivity() {
-    Intent i = new Intent(this, ComposeActivity.class);
+    Intent i = new Intent(this, MainActivity.class);
     startActivity(i);
 
     // remove LoginActivity from back stack
