@@ -185,9 +185,12 @@ public class CreatePostActivity extends AppCompatActivity {
     switch (id) {
       case R.id.miLogout:
         logout();
+        break;
       case R.id.miFeed:
         goFeedActivity();
+        break;
       default:
+        Toast.makeText(CreatePostActivity.this, "error: menu itme not recognised", Toast.LENGTH_SHORT).show();
     }
     return super.onOptionsItemSelected(item);
   }
@@ -205,8 +208,7 @@ public class CreatePostActivity extends AppCompatActivity {
 
   private void goLoginActivity() {
     Intent i = new Intent(this, LoginActivity.class);
-    i.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY); // close all non-login activities
     startActivity(i);
-    finishAffinity();
+    finish();
   }
 }

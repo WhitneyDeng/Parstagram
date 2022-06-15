@@ -39,6 +39,11 @@ public class LoginActivity extends AppCompatActivity {
     btnLogin = findViewById(R.id.btnLogin);
     btnSignup = findViewById(R.id.btnSignup);
 
+    // hide action bar
+    if (getSupportActionBar() != null) {
+      getSupportActionBar().hide();
+    }
+
     // set up login & signup listeners
     btnLogin.setOnClickListener(new View.OnClickListener() {
       @Override
