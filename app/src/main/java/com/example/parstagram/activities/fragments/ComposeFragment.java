@@ -41,7 +41,7 @@ import java.io.File;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link ComposeFragment#newInstance} factory method to
+ * Use the {@link ComposeFragment#} factory method to
  * create an instance of this fragment.
  */
 public class ComposeFragment extends Fragment
@@ -57,45 +57,15 @@ public class ComposeFragment extends Fragment
   private ImageView ivPostImage;
   private Button btnSubmit;
 
-  // TODO: Rename parameter arguments, choose names that match
-  // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-  private static final String ARG_PARAM1 = "param1";
-  private static final String ARG_PARAM2 = "param2";
-
-  // TODO: Rename and change types of parameters
-  private String mParam1;
-  private String mParam2;
-
   public ComposeFragment() {
     // Required empty public constructor
   }
 
-  /**
-   * Use this factory method to create a new instance of
-   * this fragment using the provided parameters.
-   *
-   * @param param1 Parameter 1.
-   * @param param2 Parameter 2.
-   * @return A new instance of fragment ComposeFragment.
-   */
-  // TODO: Rename and change types and number of parameters
-  public static ComposeFragment newInstance(String param1, String param2) {
-    ComposeFragment fragment = new ComposeFragment();
-    Bundle args = new Bundle();
-    args.putString(ARG_PARAM1, param1);
-    args.putString(ARG_PARAM2, param2);
-    fragment.setArguments(args);
-    return fragment;
+  @Override
+  public void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setHasOptionsMenu(true);  //show option menu
   }
-
-//  @Override
-//  public void onCreate(Bundle savedInstanceState) {
-//    super.onCreate(savedInstanceState);
-//    if (getArguments() != null) {
-//      mParam1 = getArguments().getString(ARG_PARAM1);
-//      mParam2 = getArguments().getString(ARG_PARAM2);
-//    }
-//  }
 
   // The onCreateView method is called when Fragment should create its View object hierarchy,
   // either dynamically or via XML layout inflation.
@@ -228,11 +198,11 @@ public class ComposeFragment extends Fragment
     });
   }
 
-  //ref: add option menu to fragment: https://stackoverflow.com/questions/8308695/how-to-add-options-menu-to-fragment-in-android
-  @Override
-  public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-    super.onCreateOptionsMenu(menu, inflater);
-  }
+//  //ref: add option menu to fragment: https://stackoverflow.com/questions/8308695/how-to-add-options-menu-to-fragment-in-android
+//  @Override
+//  public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+//    super.onCreateOptionsMenu(menu, inflater);
+//  }
 
   @Override
   public boolean onOptionsItemSelected(MenuItem item) {
@@ -243,7 +213,6 @@ public class ComposeFragment extends Fragment
 
     switch (id) {
       case R.id.miLogout:
-        Toast.makeText(getContext(), "logout clicked", Toast.LENGTH_SHORT).show();
         logout();
         break;
 //      case R.id.miFeed:
@@ -255,12 +224,9 @@ public class ComposeFragment extends Fragment
     return super.onOptionsItemSelected(item);
   }
 
-
   private void logout() {
-
     ParseUser.logOut();
     goLoginActivity();
-//        ParseUser currentUser = ParseUser.getCurrentUser();   //qq: update the current user by calling the ParseUser's getCurrentUser() how does this change anything?
   }
 
   private void goLoginActivity() {
