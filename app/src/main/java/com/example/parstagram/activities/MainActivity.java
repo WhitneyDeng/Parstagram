@@ -55,6 +55,8 @@ public class MainActivity extends AppCompatActivity {
         return true;
       }
     });
+    // default bottom nav selection
+    bottomNavigationView.setSelectedItemId(R.id.action_home);
   }
 
   // Menu icons are inflated just as they were with actionbar
