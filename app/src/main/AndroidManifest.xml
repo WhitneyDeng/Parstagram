@@ -23,7 +23,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Parstagram"
         tools:targetApi="31"
-        android:roundIcon="@drawable/icon">
+        android:roundIcon="@drawable/icon"
+        android:usesCleartextTraffic="true">
         <activity
             android:name=".activities.PostDetailsActivity"
             android:exported="false" />

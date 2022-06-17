@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.example.parstagram.R;
 import com.example.parstagram.activities.fragments.ComposeFragment;
 import com.example.parstagram.activities.fragments.FeedFragment;
+import com.example.parstagram.activities.fragments.ProfileFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
@@ -38,17 +39,14 @@ public class MainActivity extends AppCompatActivity {
         Fragment fragment;
         switch (item.getItemId()) {
           case  R.id.action_home:
-            fragment = new FeedFragment(); //todo: change fragment
-            Toast.makeText(MainActivity.this, "home selected", Toast.LENGTH_SHORT).show();
+            fragment = new FeedFragment();
             break;
           case R.id.action_compose:
             fragment = new ComposeFragment();
-            Toast.makeText(MainActivity.this, "compose selected", Toast.LENGTH_SHORT).show();
             break;
           case R.id.action_profile:
           default:
-            fragment = new ComposeFragment(); //todo: change fragmetn
-            Toast.makeText(MainActivity.this, "profile selected", Toast.LENGTH_SHORT).show();
+            fragment = new ProfileFragment();
             break;
         }
         fragmentManager.beginTransaction()
