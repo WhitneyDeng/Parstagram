@@ -35,11 +35,11 @@ public class FeedFragment extends Fragment {
 
   public static final int INITIAL_POST_LOAD_SIZE = 20;
 
-  private RecyclerView rvPosts;
-  private SwipeRefreshLayout swipeContainer;
-
+  protected RecyclerView rvPosts;
   protected LinearLayoutManager layoutManager;
   protected PostsAdapter adapter;
+
+  private SwipeRefreshLayout swipeContainer;
 
   public FeedFragment() {
     // Required empty public constructor
@@ -55,7 +55,7 @@ public class FeedFragment extends Fragment {
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
-    ((AppCompatActivity)getActivity()).getSupportActionBar().setLogo(R.drawable.nav_logo_whiteout);
+//    ((AppCompatActivity)getActivity()).getSupportActionBar().setLogo(R.drawable.nav_logo_whiteout);
 
     rvPosts = view.findViewById(R.id.rvPosts);
 

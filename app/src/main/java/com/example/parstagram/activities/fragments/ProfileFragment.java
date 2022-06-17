@@ -1,6 +1,13 @@
 package com.example.parstagram.activities.fragments;
 
+import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.parstagram.model.Post;
 import com.parse.FindCallback;
@@ -11,6 +18,14 @@ import com.parse.ParseUser;
 import java.util.List;
 
 public class ProfileFragment extends FeedFragment{
+
+  @Override
+  public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    super.onViewCreated(view, savedInstanceState);
+    layoutManager = new GridLayoutManager(getContext(), 3);
+    rvPosts.setLayoutManager(layoutManager); //set layout manager
+  }
+
   @Override
   protected void queryPosts() {
     // specify which database class to query
